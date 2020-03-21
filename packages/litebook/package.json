@@ -1,0 +1,45 @@
+{
+  "name": "litebook",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "bin": {
+    "litebook": "cli.js"
+  },
+  "keywords": [],
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/estrattonbailey/litebook.git"
+  },
+  "author": "estrattonbailey",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/estrattonbailey/litebook/issues"
+  },
+  "homepage": "https://github.com/estrattonbailey/litebook#readme",
+  "dependencies": {
+    "@babel/core": "^7.8.7",
+    "@babel/plugin-proposal-object-rest-spread": "^7.8.3",
+    "@babel/plugin-transform-async-to-generator": "^7.8.3",
+    "@babel/preset-env": "^7.8.7",
+    "@babel/preset-react": "^7.8.3",
+    "babel-loader": "^8.0.6",
+    "ansi-colors": "^4.1.1",
+    "chokidar": "^3.3.1",
+    "commander": "^5.0.0",
+    "exit": "^0.1.2",
+    "exit-hook": "^2.2.0",
+    "fs-extra": "^9.0.0",
+    "html-webpack-plugin": "^3.2.0",
+    "junk": "^3.1.0",
+    "matched": "^5.0.0",
+    "micromatch": "^4.0.2",
+    "react": "^16.13.0",
+    "react-dom": "^16.13.0",
+    "ts-loader": "^6.2.1",
+    "webpack": "^4.42.0",
+    "webpack-dev-server": "^3.10.3"
+  },
+  "devDependencies": {}
+}
