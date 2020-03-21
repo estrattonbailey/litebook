@@ -7,6 +7,11 @@ const litebook = require('./index.js');
 const prog = require("commander")
   .version(pkg.version)
   .option(
+    "-i, --source <path>",
+    "path to source files",
+    "litebook.config.js"
+  )
+  .option(
     "-c, --config <path>",
     "specify the path to your config file",
     "litebook.config.js"
@@ -27,7 +32,7 @@ const prog = require("commander")
   );
 
 prog.
-  command("watch <source>")
+  command("watch")
   .action(async source => {
     litebook({
       source,
@@ -35,17 +40,19 @@ prog.
       config: prog.config,
       output: prog.output,
       port: prog.port,
+      theme: prog.theme,
     });
   });
 
 prog.
-  command("build <source>")
+  command("build")
   .action(async source => {
     litebook({
       source,
       config: prog.config,
       output: prog.output,
       port: prog.port,
+      theme: prog.theme,
     });
   });
 

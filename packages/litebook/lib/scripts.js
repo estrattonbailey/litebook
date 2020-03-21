@@ -1,6 +1,8 @@
 const fs = require("fs-extra");
 const path = require("path");
 
+const { getFile } = require("./utils");
+
 function getFileImportsFromStats(stats) {
   let imports = "";
 
@@ -19,6 +21,7 @@ function getFileImportsFromStats(stats) {
 function createApp(stats, {
   cwd,
   tempDir,
+  theme,
 }) {
   const imports = getFileImportsFromStats(stats);
   const index = stats.map(stat => {
@@ -33,11 +36,10 @@ function createApp(stats, {
       component: asset.name.replace(/\.\w+$/, "")
     };
   });
-  const theme = path.resolve(cwd, "./theme/dist/theme.es.js");
 
   const script = `
     import React from 'react';
-    import { Theme } from '${theme}';
+    import { Theme } from '${path.resolve(cwd, 'node_modules', theme)}';
     ${imports}
 
     const index = [

@@ -1,5 +1,6 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const merge = require('webpack-merge');
 
 const baseStoryConfig = {
   target: "web",
@@ -27,13 +28,13 @@ const baseStoryConfig = {
   }
 };
 
-function createStoryConfigs({ cwd, sourceDir, sourceFiles, tempDir, watch }) {
+function createStoryConfigs({ cwd, sourceDir, sourceFiles, tempDir, watch, webpack }) {
   return sourceFiles.map(file => {
     const filename = path.basename(file).replace(/\.\w+$/, "");
     const relDir = path.dirname(file).replace(sourceDir, "");
     const absDir = path.join(tempDir, relDir);
 
-    return {
+    const config = {
       ...baseStoryConfig,
       mode: watch ? "development" : "production",
       entry: file,
@@ -46,6 +47,8 @@ function createStoryConfigs({ cwd, sourceDir, sourceFiles, tempDir, watch }) {
         alias: { "@": sourceDir }
       },
     };
+
+    return webpack ? merge.smart(config, webpack({ ...config })) : config;
   });
 }
 

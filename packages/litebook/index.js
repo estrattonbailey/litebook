@@ -22,13 +22,14 @@ module.exports = async function create({
   watch: cliWatch,
   config: cliConfig,
   output,
-  port
+  port,
+  theme
 }) {
-  const config = getFile(cliConfig);
+  const config = getFile(cliConfig, cwd);
 
-  const source = cliSource || config.source;
+  const source = config.source || cliSource;
   assert(source, "config - please provide a source", true);
-  const publicDir = path.join(cwd, output || config.output || "litebook");
+  const publicDir = path.join(cwd, config.output || output ||  "litebook");
   const sourceFiles = (await matched(source, { cwd, nodir: true })).map(f =>
     path.resolve(cwd, f)
   );
@@ -50,13 +51,15 @@ module.exports = async function create({
     sourceDir,
     sourceFiles,
     watch: cliWatch,
-    port: port || 5000
+    port: config.port || port || 5000,
+    theme: config.theme || theme || '@litebook/theme',
+    webpack: config.webpack
   };
 
   const configs = createStoryConfigs(context);
 
   if (cliWatch) {
-    if (!applicationServer) log(`litebook - watch - http://localhost:${port}`, "blue");
+    if (!applicationServer) log(`litebook - watch - http://localhost:${context.port}`, "blue");
     log("compiling", "gray");
 
     const compiler = watch(configs);

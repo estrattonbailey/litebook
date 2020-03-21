@@ -57,5 +57,9 @@
   },
   "peerDependencies": {
     "react": ">= 16.8"
+  },
+  "dependencies": {
+    "react-router": "^5.1.2",
+    "react-router-dom": "^5.1.2"
   }
 }

@@ -8,11 +8,15 @@ function getAssetId(stat) {
   return path.join(asset.outputPath, asset.name);
 }
 
-function getFile(path) {
+function getFile(file, dir) {
   try {
-    return require(path);
+    return require(file);
   } catch (e) {
-    return {};
+    try {
+      return require(path.resolve(dir, file));
+    } catch (e) {
+      return {};
+    }
   }
 }
 
