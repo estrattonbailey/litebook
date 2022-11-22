@@ -31,7 +31,7 @@
     "exit": "^0.1.2",
     "exit-hook": "^2.2.0",
     "fs-extra": "^9.0.0",
-    "html-webpack-plugin": "^3.2.0",
+    "html-webpack-plugin": "^5.5.0",
     "junk": "^3.1.0",
     "matched": "^5.0.0",
     "micromatch": "^4.0.2",
